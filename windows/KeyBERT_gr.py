@@ -42,8 +42,10 @@ def combine(text, ngram,dvsity):
     a = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, ngram), stop_words='english',
                               use_mmr=True, diversity=dvsity, highlight=True)     
     output = ''' '''    
+    colors = ['primary', 'secondary', 'success', 'danger','warning','info','light','dark']
     for kw in a:
-        output = output + f'''<span class="badge text-bg-dark">{str(kw[0])}</span>
+        s = random.randint(0,6)
+        output = output + f'''<span class="badge text-bg-{colors[s]}">{str(kw[0])}</span>
         
         '''
     STYLE = '''<head>
