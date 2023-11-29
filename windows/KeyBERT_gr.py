@@ -39,6 +39,7 @@ gr.themes.Soft()
 """
 def combine(text, ngram,dvsity):
     import datetime
+    import random
     a = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, ngram), stop_words='english',
                               use_mmr=True, diversity=dvsity, highlight=True)     
     output = ''' '''    
