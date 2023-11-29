@@ -42,9 +42,11 @@ def combine(text, ngram,dvsity):
     import random
     a = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, ngram), stop_words='english',
                               use_mmr=True, diversity=dvsity, highlight=True)     
-    output = ''' '''    
+    output = ''' ''' 
+    tags = []   
     colors = ['primary', 'secondary', 'success', 'danger','warning','info','light','dark']
     for kw in a:
+        tags.append(str(kw[0]))
         s = random.randint(0,6)
         output = output + f'''<span class="badge text-bg-{colors[s]}">{str(kw[0])}</span>
         
@@ -57,11 +59,11 @@ def combine(text, ngram,dvsity):
     OUTPUT_OK = STYLE  + '''<div class="container">
     '''  + output  + "</div><br>"
     
-    #print(OUTPUT_OK)
-
+    timestamped = datetime.datetime.now()
+    #LOG THE TEXT AND THE METATAGS
+    logging_text = f"LOGGED ON: {str(timestamped)}\nMETADATA: {str(tags)}\nsettings: keyphrase_ngram_range (1,{str(ngram)})  Diversity {str(dvsity)}\n---\nORIGINAL TEXT:\n{text}\n---\n\n"      
+    writehistory(logging_text)
     return OUTPUT_OK
-
-    #return generation, delta
 
 
 # MAIN GRADIO INTERFACE
