@@ -1,0 +1,2 @@
+pip install pip install llama-cpp-python==0.2.20
+pip install gradio
